@@ -21,7 +21,7 @@ int main(void)
 
 		printf("Last digit of %i is %i and %s\n", n, lastDigit, a);
 	}
-	else if (lastDigit > 6)
+	else if (lastDigit < 6)
 	{
 		char a[] = "less than 6 and is not 0\n";
 
