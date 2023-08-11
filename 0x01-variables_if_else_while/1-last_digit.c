@@ -29,7 +29,7 @@ int main(void)
 	}
 	else
 	{
-		char a[] = "greater than 5";
+		char a[] = "is greater than 5";
 
 		printf("Last digit of %i is %i and %s\n", n, lastDigit, a);
 	}
