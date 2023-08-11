@@ -8,22 +8,22 @@
 */
 int main(void)
 {
-	int n;
+	int n, lastDigit;
 
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
-	int lastDigit = n % 10;
+	lastDigit = n % 10;
 
 
 	if (lastDigit == 0)
 	{
 		char a[] = "is 0";
 
-		printf("Last digit of %i is %i and %s", n, lastDigit, a);
+		printf("Last digit of %i is %i and %s\n", n, lastDigit, a);
 	}
 	else if (lastDigit > 6)
 	{
-		char a[] = "less than 6 and is not 0";
+		char a[] = "less than 6 and is not 0\n";
 
 		printf("Last digit of %i is %i and %s", n, lastDigit, a);
 	}
@@ -31,7 +31,7 @@ int main(void)
 	{
 		char a[] = "greater than 5";
 
-		printf("Last digit of %i is %i and %s", n, lastDigit, a);
+		printf("Last digit of %i is %i and %s\n", n, lastDigit, a);
 	}
 
 
