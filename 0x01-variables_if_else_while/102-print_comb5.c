@@ -1,40 +1,25 @@
-#include <stdlib.h>
-#include <time.h>
 #include <stdio.h>
-/**
-* main - Entry point
-*
-* Return: Always 0 (Success)
-*/
+
 int main(void)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int l = 0;
+    int a, b, c, d;
 
-	for (i = 0; i < 10; i++)
-	{
-		for (j = 0; j < 10; j++)
-		{
-			for (k = j; k < 10; k++)
-			{
-				for (l = i+1; l < 10; l++)
-				{
-					putchar(48 + i);
-					putchar(48 + j);
-					putchar(' ');
-					putchar(48 + k);
-					putchar(48 + l);
-					if (!(k == 9 && j == 8 && i == 7))
-					{
-						putchar(',');
-						putchar(' ');
-					}
-				}
-			}
-		}
-	}
-	putchar('\n');
-	return (0);
+    for (a = 0; a <= 9; a++) {
+        for (b = 0; b <= 9; b++) {
+            for (c = a; c <= 9; c++) {
+                for (d = b + 1; d <= 9; d++) {
+                    putchar('0' + a);
+                    putchar('0' + b);
+                    putchar(' ');
+                    putchar('0' + c);
+                    putchar('0' + d);
+                    if (a != 9 || b != 8 || c != 9 || d != 9) {
+                        putchar(',');
+                        putchar(' ');
+                    }
+                }
+            }
+        }
+    }
+    return 0;
 }
