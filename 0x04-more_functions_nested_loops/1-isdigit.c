@@ -9,6 +9,6 @@
 
 int _isdigit(int a)
 {
-	return (a >= 48 && a <= 57)
+	return (a >= 48 && a <= 57);
 }
 
