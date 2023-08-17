@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Ask for the filename
+read -p "Enter filename: " filename
+
+# Ask for the function name
+read -p "Enter function name: " function_name
+
+# Ask for the return type
+read -p "Enter return type: " return_type
+
+# Ask for the parameters
+parameters=""
+while true; do
+    read -p "Enter parameter type (or 'done' to finish): " type
+    if [ "$type" = "done" ]; then
+        break
+    fi
+    read -p "Enter parameter name: " name
+    parameters+="$type $name, "
+done
+
+parameters=${parameters%??} # Remove trailing comma and space
+
+# Generate the C source file
+cat << EOF > $filename
+#include "main.h"
+
+/**
+ * $function_name - description
+ * $parameters
+ * Return: description
+ */
+$return_type $function_name($parameters)
+{
+    /* logic */
+}
+EOF
+
+echo "C source file created: $filename"
