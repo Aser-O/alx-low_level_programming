@@ -1,10 +1,11 @@
 #include "main.h"
 
 /**
- * mul - checks if char is uppercase or lowercase
+ * mul - multiply
  *
- * @a: char to check
- * Return: 1 if upper 0 is lower
+ * @a: n1
+ * @b: n2
+ * Return: res 
  */
 
 int mul(int a, int b)
