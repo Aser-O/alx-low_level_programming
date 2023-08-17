@@ -5,7 +5,7 @@
  *
  * @a: n1
  * @b: n2
- * Return: res 
+ * Return: res
  */
 
 int mul(int a, int b)
