@@ -13,6 +13,5 @@ void print_line(int a)
 	{
 		_putchar('_');
 	}
-	_putchar('$');
 	_putchar('\n');
 }
