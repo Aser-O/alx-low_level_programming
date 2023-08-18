@@ -1,40 +1,71 @@
 #!/bin/bash
 
-# Ask for the filename
-read -p "Enter filename: " filename
+declare -a param_types
+declare -a param_names
+declare -a param_desc
+i=1
 
-# Ask for the function name
-read -p "Enter function name: " function_name
+# Loop to get the parameter types, names, and descriptions
+while true
+do
+  echo "Enter parameter type $i or -1 to end:"
+  read param_type
+  if [ "$param_type" = "-1" ]; then
+      break
+  fi
+  param_types[$i]=$param_type
 
-# Ask for the return type
-read -p "Enter return type: " return_type
+  echo "Enter parameter name $i:"
+  read param_name
+  param_names[$i]=$param_name
 
-# Ask for the parameters
-parameters=""
-while true; do
-    read -p "Enter parameter type (or 'done' to finish): " type
-    if [ "$type" = "done" ]; then
-        break
-    fi
-    read -p "Enter parameter name: " name
-    parameters+="$type $name, "
+  echo "Enter parameter description $i:"
+  read param_desc
+  param_desc[$i]=$param_desc
+
+  ((i++))
 done
 
-parameters=${parameters%??} # Remove trailing comma and space
+# Get function name, description, return type description, return type and filename
+echo "Enter function name:"
+read func_name
+echo "Enter function description:"
+read func_desc
+echo "Enter return type description:"
+read return_desc
+echo "Enter function return type:"
+read return_type
+echo "Enter filename:"
+read filename
 
 # Generate the C source file
-cat << EOF > $filename
-#include "main.h"
+echo '#include "main.h"' > "$filename"
+echo "" >> "$filename"
+echo "/**" >> "$filename"
+echo "* $func_name - $func_desc" >> "$filename"
 
-/**
- * $function_name - description
- * $parameters
- * Return: description
- */
-$return_type $function_name($parameters)
-{
-    /* logic */
-}
-EOF
+# Loop to output the parameters in the correct format
+for (( j=1; j<$i; j++ ))
+do
+  echo "* @${param_names[$j]}: ${param_desc[$j]}" >> "$filename"
+done
 
-echo "C source file created: $filename"
+echo "* Return: $return_desc" >> "$filename"
+echo "*/" >> "$filename"
+
+# Loop to output the parameters in the function declaration
+echo -n "$return_type $func_name(" >> "$filename"
+for (( j=1; j<$i; j++ ))
+do
+  if [ $j -eq $((i-1)) ]
+  then
+    echo -n "${param_types[$j]} ${param_names[$j]}" >> "$filename"
+  else
+    echo -n "${param_types[$j]} ${param_names[$j]}, " >> "$filename"
+  fi
+done
+
+echo ")" >> "$filename"
+echo "{" >> "$filename"
+echo "    /* logic */" >> "$filename"
+echo "}" >> "$filename"
