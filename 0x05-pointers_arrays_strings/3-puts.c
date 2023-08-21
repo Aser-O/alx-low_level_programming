@@ -11,12 +11,11 @@ void _puts(char *s)
 
 	do {
 		if (s[i] != '\0')
-			_putchar(s[i]);
+			_putchar(s[i++]);
 		else
 		{
 			_putchar('\n');
 			return;
-		 }
-		i++;
+		}
 	} while (1);
 }
