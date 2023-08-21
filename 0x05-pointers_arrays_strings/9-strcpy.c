@@ -18,6 +18,7 @@ char *_strcpy(char *dest, char *s)
 		}
 		else
 		{
+			dest[i] = s[i];
 			break;
 		}
 	} while (1);
