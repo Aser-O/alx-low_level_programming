@@ -16,6 +16,7 @@ void _puts(char *s)
 		{
 			_putchar('\n');
 			return;
-		}
+		 }
+		i++;
 	} while (1);
 }
