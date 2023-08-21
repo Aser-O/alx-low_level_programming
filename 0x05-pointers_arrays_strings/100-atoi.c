@@ -41,8 +41,8 @@ int _atoi(char *s)
 		for (k = 0; k < numDigits - 1; k++)
 			factor = factor * 10;
 		numDigits--;
-		num = num + (factor * (s[j] - '0'));
+		num = (sign > 0) ?  num + (factor * (s[j] - '0')) : num - (factor * (s[j] - '0'));
 	}
 
-	return (num * sign);
+	return (num);
 }
