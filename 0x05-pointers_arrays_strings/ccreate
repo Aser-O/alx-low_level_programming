@@ -67,5 +67,5 @@ done
 
 echo ")" >> "$filename"
 echo "{" >> "$filename"
-echo "    /* logic */" >> "$filename"
+echo "	" >> "$filename"
 echo "}" >> "$filename"
