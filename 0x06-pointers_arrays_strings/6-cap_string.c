@@ -27,8 +27,8 @@ char *cap_string(char *a)
 		if ((a[i] >= 'a' && a[i] <= 'z') && sep == 1)
 		{
 			a[i] += 'A' - 'a';
-			sep = 0;
 		}
+		sep = 0;
 		i++;
 	} while (1);
 }
