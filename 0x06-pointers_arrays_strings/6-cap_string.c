@@ -9,10 +9,9 @@ char *cap_string(char *c)
 {
 	int i = 0;
 
-	do
-	{
+	do {
 		if (c[i] == '\0')
-			return c;
+			return (c);
 		if (c[i] >= 'a' && c[i] <= 'z')
 			c[i] += 'A' - 'a';
 		i++;
