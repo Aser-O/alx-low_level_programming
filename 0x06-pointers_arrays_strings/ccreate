@@ -1,0 +1,71 @@
+#!/bin/bash
+
+declare -a param_types
+declare -a param_names
+declare -a param_desc
+i=1
+
+# Loop to get the parameter types, names, and descriptions
+while true
+do
+  echo "Enter parameter type $i or -1 to end:"
+  read param_type
+  if [ "$param_type" = "-1" ]; then
+      break
+  fi
+  param_types[$i]=$param_type
+
+  echo "Enter parameter name $i:"
+  read param_name
+  param_names[$i]=$param_name
+
+  echo "Enter parameter description $i:"
+  read param_desc
+  param_desc[$i]=$param_desc
+
+  ((i++))
+done
+
+# Get function name, description, return type description, return type and filename
+echo "Enter function name:"
+read func_name
+echo "Enter function description:"
+read func_desc
+echo "Enter return type description:"
+read return_desc
+echo "Enter function return type:"
+read return_type
+echo "Enter filename:"
+read filename
+
+# Generate the C source file
+echo '#include "main.h"' > "$filename"
+echo "" >> "$filename"
+echo "/**" >> "$filename"
+echo "* $func_name - $func_desc" >> "$filename"
+
+# Loop to output the parameters in the correct format
+for (( j=1; j<$i; j++ ))
+do
+  echo "* @${param_names[$j]}: ${param_desc[$j]}" >> "$filename"
+done
+
+echo "* Return: $return_desc" >> "$filename"
+echo "*/" >> "$filename"
+
+# Loop to output the parameters in the function declaration
+echo -n "$return_type $func_name(" >> "$filename"
+for (( j=1; j<$i; j++ ))
+do
+  if [ $j -eq $((i-1)) ]
+  then
+    echo -n "${param_types[$j]} ${param_names[$j]}" >> "$filename"
+  else
+    echo -n "${param_types[$j]} ${param_names[$j]}, " >> "$filename"
+  fi
+done
+
+echo ")" >> "$filename"
+echo "{" >> "$filename"
+echo "    /* logic */" >> "$filename"
+echo "}" >> "$filename"
