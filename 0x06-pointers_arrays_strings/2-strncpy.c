@@ -24,7 +24,7 @@ char *_strncpy(char *dest, char *src, int n)
 	}
 
 	if (sizesrc > n)
-		dest[i + sizedst + 1] = '\0';
+		dest[i + sizedst] = '\0';
 	else
 		dest[i] = '\0';
 
